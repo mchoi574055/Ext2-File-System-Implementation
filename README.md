@@ -1,4 +1,4 @@
-# Hey! I'm Filing Here
+# Ext2 File System Implementation in C
 
 This code seeks to create a valid ext2 filesystem in c by creating a .img that
 can be mounted to a directory that holds all the files.
