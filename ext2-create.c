@@ -196,8 +196,6 @@ void write_superblock(int fd) {
 
 	struct ext2_superblock superblock = {0};
 
-	/* These are intentionally incorrectly set as 0, you should set them
-	   correctly and delete this comment */
 	superblock.s_inodes_count      = NUM_INODES;
 	superblock.s_blocks_count      = NUM_BLOCKS;
 	superblock.s_r_blocks_count    = 0;
@@ -224,8 +222,6 @@ void write_superblock(int fd) {
 	superblock.s_def_resuid        = 0; /* root */
 	superblock.s_def_resgid        = 0; /* root */
 
-	/* You can leave everything below this line the same, delete this
-	   comment when you're done the lab */
 	superblock.s_uuid[0] = 0x5A;
 	superblock.s_uuid[1] = 0x1E;
 	superblock.s_uuid[2] = 0xAB;
@@ -259,8 +255,6 @@ void write_block_group_descriptor_table(int fd) {
 
 	struct ext2_block_group_descriptor block_group_descriptor = {0};
 
-	/* These are intentionally incorrectly set as 0, you should set them
-	   correctly and delete this comment */
 	block_group_descriptor.bg_block_bitmap = 3;
 	block_group_descriptor.bg_inode_bitmap = 4;
 	block_group_descriptor.bg_inode_table = 5;
@@ -275,7 +269,7 @@ void write_block_group_descriptor_table(int fd) {
 }
 
 void write_block_bitmap(int fd) {
-	/* This is all you */
+
 	off_t off = BLOCK_OFFSET(BLOCK_BITMAP_BLOCKNO);
 	off = lseek(fd, off, SEEK_SET);
 	if (off == -1) {
@@ -327,7 +321,7 @@ void write_block_bitmap(int fd) {
 }
 
 void write_inode_bitmap(int fd) {
-	/* This is all you */
+
 	off_t off = BLOCK_OFFSET(INODE_BITMAP_BLOCKNO);
 	off = lseek(fd, off, SEEK_SET);
 	if (off == -1) {
@@ -406,8 +400,6 @@ void write_inode_table(int fd) {
 	write_inode(fd, LOST_AND_FOUND_INO, &lost_and_found_inode);
 
 
-	/* You should add your 3 other inodes in this function and delete this
-	   comment */
 	struct ext2_inode root_inode = {0};
 	 root_inode.i_mode = EXT2_S_IFDIR
 	                              | EXT2_S_IRUSR
@@ -477,7 +469,6 @@ void write_inode_table(int fd) {
 }
 
 void write_root_dir_block(int fd) {
-	/* This is all you */
 
   	off_t off = BLOCK_OFFSET(ROOT_DIR_BLOCKNO);
 	off = lseek(fd, off, SEEK_SET);
